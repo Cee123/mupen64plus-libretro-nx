@@ -1,7 +1,7 @@
 DEBUG = 0
 FORCE_GLES ?= 0
-FORCE_GLES3 ?= 0
-LLE ?= 1
+FORCE_GLES3 ?= 1
+LLE ?= 0
 HAVE_PARALLEL_RSP ?= 0
 HAVE_PARALLEL_RDP ?= 0
 
@@ -243,7 +243,8 @@ else ifneq (,$(findstring odroid,$(platform)))
    TARGET := $(TARGET_NAME)_libretro.so
    LDFLAGS += -shared -Wl,--version-script=$(LIBRETRO_DIR)/link.T -Wl,--no-undefined
    BOARD ?= $(shell cat /proc/cpuinfo | grep -i odroid | awk '{print $$3}')
-   GLES = 1
+   GLES = 0
+   GLES3= 1
    GL_LIB := -lGLESv2
    CPUFLAGS += -marm -mfloat-abi=hard
    HAVE_NEON = 1
